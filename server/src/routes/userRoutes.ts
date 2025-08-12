@@ -1,18 +1,8 @@
 import { Router } from "express";
-import {User} from "../models/UserModel.js";
-
+import { createUser, getUsers } from "../controllers/userController.js";
 const router = Router();
 
-router.post("/create-user", async (req, res) => {
-    try {
-        const user = new User(req.body)
-        await user.save();
-        res.status(201).json(user);
-        
-    } catch (error) {
-        console.error('Muy cristal');
-        
-    }
-})
+router.post("/create-user", createUser)
+router.get("/getall", getUsers)
 
 export default router;
